@@ -1,4 +1,4 @@
-package com.wy.rs.parser
+package com.wy.rs.captcha
 
 /**
  * 验证码识别接口

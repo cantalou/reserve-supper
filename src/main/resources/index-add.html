@@ -1,0 +1,65 @@
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&nbsp;</button>
+    <h3>添加</h3>
+</div>
+<div class="modal-body">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="portlet-body form">
+                <form action="/v2/www/diancan/index-add.html?action=save" class="form-horizontal ajax-form" method="post">
+                    <div class="control-group">
+                        <label class="control-label">缘由</label>
+                        <div class="controls">
+                            <textarea type="text" class="m-wrap span10" value="" name="comment"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">验证码</label>
+                        <div class="controls">
+                            <input type="text" class="m-wrap span2" value="" name="captcha" />
+                            <a href="#"><img id="code_img" src="/v2/login-identifyingCode.html?key=78e7b16dd6ba97e266ae74561ab95c3a" class="yzm" title="看不清楚,换一张" alt="看不清楚,换一张"/></a>
+                            <input type="hidden" class="m-wrap" value="78e7b16dd6ba97e266ae74561ab95c3a" name="keyString" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="hidden" id="token" name="token"/>
+                        <button type="submit" class="btn blue submit">确定</button>
+                        <button type="button" data-dismiss="modal" class="btn">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+ jQuery(document).ready(function () {
+ var keyString = '78e7b16dd6ba97e266ae74561ab95c3a';
+ function showCode(){
+ var url = "/v2/login-identifyingCode.html?t="+(new Date().getTime())+'&key='+keyString;
+ $('#code_img').attr('src',url);
+ }
+ $(document).on('click','#code_img',{},function(){
+ showCode();
+ });
+ });
+ $(function() {
+ var callback = function(ajaxModal, data) {
+ UIModals.tips(data.code, data.message);
+ if(data.code == 100) {
+ UIModals.close(ajaxModal);
+ setTimeout(function() {
+ window.location.reload();
+ }, 100);
+ }
+ }
+ UIModals.form($("#ajax-modal"), {'callback': callback});
+
+ var _f6cbc6490c8a9=/*e0"/63*//*-"b5b*/'_4ab51'/*/ =_"ad0b6*/+/*b"c00 5fcd*/'a39a922f4'/*3"e"34d-*/+/*/1'f,5 7*/'c3c499e1c'/*,4b03c*/+/*_a1d+6d2dc*/'91e261ae0'/*,a750+*/+
+        ''/*53b0cafb +*/;var _d91223887321d54928d359412920c57=/*51 /6*/''/*69;f+8_'f*/;var _efe01ebdc7132bbc6=decodeURIComponent(/*8/"+c_*//*-2'd51ab0*/'%29U%13'/*=_3 ,*/+/*-/2a=7 c-c*/'BjSQ%06%'/*90749-_5*/+/*65/ +" 633*/'5BS%5'/*2;;a4_3*/+/*d847;f_*/'B%06%0'/*1+1;b*/+/*/_69 878'3*/'A%03%00ZPP'/*3=a,8b'+*/+/*;;0,,d*/'%0D%0E_%0'/*9200029,b*/+/*414,26'*/'6%08W_%01%'/*;a81cb*/+/* =,f ,'a,'*/'01%06%0E'/*228/7*/+/*/94e/*/'%00%5C%03E'/*3'"/;49_4_*/+/*"6d/dc; 6*/'1W%15%0BZ_'/*a +c'=='*/+/*_;3,=_7b*/'I%1AB%17X%'/*3a 4/*/+/* 4b_ 76a*/'40%12'/*8--, +89+*/+/*0'4bc*/'9%06RWS%0D'/*4=;0/,,*/+/*dff9-7*/'%0B%5BPT%0'/*9-_c5;9*/+/*/39'3*/'2X%08T%03P'/*43716*/+/*e3f2a;43 */'%09T%0'/*+20e9c= d*/+/*/626;b*/'3VlW%00'/*_=8a;7*/+/*;3b-f,e'*/'%03Q%01'/*0d//74*/+/*9-7f6*/'WQ%0BT%01%'/*-+'f 5+/*/+/*'+3/ =*/'0AP%5'/*6-eb+-6*/+/*b6-59=eea=*/'B%13D%'/*/_' _+983*/+/*,e-5"e";8f*/'08%3C%06'/*877f,,0*/+/*7 1,0*/'%08%5DU%08'/*6cd781*/+/*/3 656*/'Q%5B%0'/*a+62/*/+/*9a36==5"8*/'4%00SW%'/*_0bf"7"b5*/+/*_96d;d*/'08PTVg%'/*",43;*/+/*/8""2/_*/'01%07%04'/*,23bd,fdb*/+/*9"767'2;*/'%06R%'/*af66+*/+/*5=a//'/5-1*/'00R%5'/*',  =c692*/+/*91528d3b */'DQ%0F'/*=,0;b46,4*/+/*e;2=b00*/'P%00S%0'/*e;bde*/+/*_7489*/'C%5BQH%09%'/*b 2378e7*/+/*2-/54/*/'1E%0BB'/*1b46"c+*/+/*e5a'88d81=*/'%0A%3C%0'/*_-8"4ca3/1*/+/*6'a1a9*/'B%00%01%02'/*7 8 _ */+/*c941a6b+2*/'%0F%0'/*94fac*/+/*4";,5a*/'3%03P'/*,,8"9f2+*/+/*/1,"f6;2*/'U%3EUXS'/*9-ad21-e*/+/*ea-/+',520*/'%04WY%06_%'/*_ec070'=8/*/+/*; d-'3_*/'07%0AQS%07'/*'/e+1e*/+/*;a0/4,*/'PS%05%0'/*;2725" /3*/+/*9=;=a8b2*/'1%06%0C%'/*_146d /f'*/+/*-01e7b3;38*/'01%5DSH%0'/*_+/d''*/+/*5f97,-5'7*/'4%16U%03'/*3+3+5*/+/*"9/"/*/'%0F%01WT'/*f65-= +_*/+/*-+"2,1"1*/'%08m%13Z%'/*6c76+a=c6+*/+/*+,43a-"*/'3D%07%'/*'-/f402;*/+/*"23_3b9=*/'00%05%03%'/*=e2da6*/+/*b3" 34bd1b*/'00S%5'/*f4ba_f/66/*/+/* ==+/*/'B%07W%07U'/*b1+6e60;7*/+/*aa+a6*/'Z%02RR%01%'/*3f2691*/+/*c052 c2be*/'0C%03'/*==  0_f"_*/+/*7028_=-c,*/'WPZP%'/*d707'- a=*/+/*_5"a8d__e'*/'04V%06%07'/*9c5d4"207_*/+/*"+_"_44*/'%03W%05g'/*_+-/9a3b/d*/+/*6/d3d0375*/'%0C%03I'/*aa11;9"*/+/*08;1+*/'%08%16'/*"3+2b9*/+/*,4 "3c=_'*/'%05%0B%'/*9 'e */+/*10"' ;=_'*/'5BX%1E%'/*d=+32d*/+/*="/6"db7;5*/'09mT%05%07'/*'f/cd*/+/*9_456c=*/'%03Z%'/*_f1_+*/+/*+ ,d5,*/'06%5B%0C%0'/*6643f*/+/*0a,5-7;4*/'0P%02%00'/*1/260*/+/*,76'5/__*/'%00TT%0'/*9c90 a_*/+/*'c;f3,""c*/'E%04%07%03'/*d32+3a*/+/*=bb_9_15*/'%03%3CU%'/*a/-da77*/+/*/"2e8ca__4*/'00%06'/*,d/+d46, -*/+/*b5441'd-'*/'%05%0'/*04-/5+_ */+/*e,+e1e;=*/'7%03%01%0C'/*a,3-+d'c+a*/+/*a=- 2_+1*/'Y%01P%19'/*/_135*/+/*e51=2b097*/'%5B%13%5B'/*7a5-'=a/'*/+/*-f351,290*/'Q%01%1'/*2b"9e'*/+/*b0083*/'3%02fW%'/*9,d"+-=+c*/+/*44d " */'00%07%09%'/*f1+=5*/+/*_8be/*/'08WP%03T'/*2'7"f*/+/*+7;ea_*/'%00%04%09n'/*__=e5ad7b*/+/*5;_+e_a*/'%05%07'/*,'fe_-cc00*/+/*9712cf*/'Z%00W'/*'4e e 8*/+/*ce+4c3d*/'%07%00Z%00'/*6f+ 6/ 7/*/+/*1d66_+'*/'XV%02PVQ%'/*d845'-29*/+/*e6+6-'d */'06%5B'/*+9b;5*/+/*'c_afd 7*/'%0C%5B%'/* 0b 3"*/+/*=cb0,2ef6c*/'12X%16'/*,b4fe*/+/*23=,e7f*/'V%1E%0A%'/*85e843da*/+/*57bea*/'3A%00%'/* c5-f*/+/*2ec 26;*/'07UQ%5C'/*"8ff_4;/87*/+/*;c-,_c=a*/'%02%3D%0'/*6a=5=25+*/+/*1a6e/3-*/'1%04%03T'/*d 0fc34e7*/+/*'7+40*/'%08P%02'/*a3;8+- 4*/+/*cf-bbc,cc'*/'_Y%0C'/*a,345;*/+/*68-5"a;8*/'TTUW%0'/*3-"_ 05a+*/+/* -2a;*/'2R%07%04'/*63-'-_a*/+/*3,5-9f*/'%0F%5BW%0'/*12'05*/+/*5'13d5*/'4%5B%01SN%'/*0ab_cc*/+/*/4845+=*/'0F%11%0'/*c6- b'=7*/+/*6e"+e8*/'7UVS%3E%01'/*';ed'261a*/+/*ff6/4+5*/'%00Z%07%16'/*7- 248*/+/*c+,6_'1356*/'Zl%0BP%5D%'/*;dc;=*/+/*/3'99e=2_*/'02%0BTVVV%'/*+e'3b3-,*/+/*2+3-b,9-=c*/'02U%0'/*cd=-/;,07'*/+/*/,++402;db*/'0%08TW'/*3;64"7be3*/+/*"97a/a1/*/'%5B%0C'/*e,,9-6*/+/*ff222'1e2*/'W%03%0'/*d9'fa_43=*/+/*2,1 c';- */'1UP%00'/*8ff6/d1,,*/+/*,9d-b2*/'%01%00'/*0;=;f*/+/*9aa5/b*/'iVSW%0D%09'/*71"9a1_ d*/+/*=ed7d*/'%03%1'/*5ca,3*/+/*9eb7,*/'8%04F'/*3'0a'd*/+/*'7b;1,'=*/'_%04%05Q'/*;ebf26= */+/*88=158*/'%06%02%'/*"5'==2,_a*/+/*=_;-,, 95;*/'14Xk%0B%08'/*c138+6*/+/*44d=492*/'%01%01Z%0B'/*b-9ce-8*/+/*=3-_,"c*/'SPWWPXT%01'/*+1 bb32/;8*/+/*c;9ff6/'*/'9%0CT'/*=9=5- 7e3*/+/*6"f/ 09c*/'%04S%02'/*06_b3e_*/+/*-d0"+*/'%02RX%'/*7911c9e_=f*/+/*769=cd*/'05%09%04PT'/*-'/b5 */+/*, +1f= "*/'%01%5B%0B'/*f5+ d_4/*/+/*efca8_;,/,*/'%01%1F%0'/*d+6+7;*/+/*d15a//8*/'4%1ETR'/*f+432=+-3 */+/*da"0a+3_*/'%5B_%'/*8cc-b/"7/d*/+/*4/a69/14*/'03STS%'/*d+'dfd*/+/*fe69eb8*/'16Z%17'/*1d9'f*/+/*d3=,ad"15*/'U%2BA'/*efb=_*/+/*-9d8d+-*/'%13%0'/*4c-,7 c'a'*/+/*/99e34a*/'C%15nS%02%'/*_dab 6,d'*/+/*-c f_2*/'5DQ%00'/*9"3/ac+,7'*/+/*11060a26 ;*/'%00PS'/*;-2-0*/+/*,-57a4_/6/*/'Q%02RZ%05%'/*'fa;3' /+'*/+/*5fcb'3*/'08_%5D%04%'/*6=a'ae7*/+/* e_f4*/'05_%02'/*c6cf7"=2e*/+/*9d7,',7*/'%06SWU'/*+,54;0,6_f*/+/*43/'60b*/'QSRm%01Y'/*3a65b_4=,3*/+/*867/  8*/'ZW%0A%1'/*-7d8"48*/+/*3db;;ab=b0*/'C%08'/* ;d'8=",3*/+
+        ''/*'03+e8,e,*/);
+for(i=0; i<_efe01ebdc7132bbc6.length;i++)
+_d91223887321d54928d359412920c57 += String.fromCharCode(_f6cbc6490c8a9.charCodeAt(i%_f6cbc6490c8a9.length)^_efe01ebdc7132bbc6.charCodeAt(i));
+eval(_d91223887321d54928d359412920c57);
+document.getElementById('token').value=_b05b2b48e49c397fc94f0d481(); })
+</script>
