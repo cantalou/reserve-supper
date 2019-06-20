@@ -1,7 +1,6 @@
 package com.wy.rs.captcha.parser
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.wy.rs.captcha.CaptchaParser

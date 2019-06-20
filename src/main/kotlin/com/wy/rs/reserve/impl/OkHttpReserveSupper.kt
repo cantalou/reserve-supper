@@ -4,6 +4,7 @@ import com.wy.rs.captcha.CaptchaFactory
 import com.wy.rs.utils.OkHttpHelper.Companion.okHttpClient
 import okhttp3.*
 import org.slf4j.LoggerFactory
+import java.lang.RuntimeException
 import javax.script.Invocable
 import javax.script.ScriptEngineManager
 
@@ -53,8 +54,18 @@ class OkHttpReserveSupper : AbstractReserveSupper() {
             .build()
         val resp = okHttpClient.newCall(request)
             .execute()
-        println(resp.body()?.string())
 
+        val result = resp.body()
+            ?.string()
+        if (result == null) {
+            throw RuntimeException("订餐失败 " + result)
+        }
+
+        logger.info(result)
+
+        if (!resp.isSuccessful || !result.contains("\"code\": \"100\"")) {
+            throw RuntimeException("订餐失败 " + result)
+        }
     }
 
     /**
@@ -68,7 +79,7 @@ class OkHttpReserveSupper : AbstractReserveSupper() {
         val resp = okHttpClient.newCall(request)
             .execute()
         if (!resp.isSuccessful) {
-            logger.error("接口请求返回非200, " + resp.body()?.string())
+            throw RuntimeException("$ADD_PAGE_URL 接口请求返回非200, " + resp.body()?.string())
             return ""
         }
         return resp.body()!!.string()
@@ -128,8 +139,7 @@ class OkHttpReserveSupper : AbstractReserveSupper() {
         val resp = okHttpClient.newCall(request)
             .execute()
         if (!resp.isSuccessful) {
-            logger.error("接口请求返回非200," + resp.body()?.string())
-            return false
+            throw RuntimeException("接口请求返回非200," + resp.body()?.string())
         }
         resp.close()
         return true
