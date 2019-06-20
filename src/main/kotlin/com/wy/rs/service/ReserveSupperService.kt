@@ -4,6 +4,8 @@ import com.wy.rs.reserve.ReserveSupper
 import com.wy.rs.reserve.impl.OkHttpReserveSupper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import javax.swing.JOptionPane
+
 
 class ReserveSupperService {
 
@@ -17,6 +19,8 @@ class ReserveSupperService {
         try {
             reserveSuper.reserve();
         } catch (e: Exception) {
+            logger.error("订餐失败", e)
+            JOptionPane.showMessageDialog(null, e.message)
         }
     }
 }

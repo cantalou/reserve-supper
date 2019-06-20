@@ -80,7 +80,6 @@ class OkHttpReserveSupper : AbstractReserveSupper() {
             .execute()
         if (!resp.isSuccessful) {
             throw RuntimeException("$ADD_PAGE_URL 接口请求返回非200, " + resp.body()?.string())
-            return ""
         }
         return resp.body()!!.string()
     }
