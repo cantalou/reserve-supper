@@ -2,7 +2,6 @@ package com.wy.rs.service
 
 import com.wy.rs.reserve.ReserveSupper
 import com.wy.rs.reserve.impl.OkHttpReserveSupper
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import javax.swing.JOptionPane
 
