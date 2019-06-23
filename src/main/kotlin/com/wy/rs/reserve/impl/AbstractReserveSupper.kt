@@ -16,7 +16,7 @@ abstract class AbstractReserveSupper : ReserveSupper {
 
     override fun reserve() {
         if (!isWorkDay(SimpleDateFormat("yyyyMMdd").format(Date()))) {
-
+            logger.error("今天非工作日不进行订餐操作")
             return;
         }
         login("linzhiwei1@4399inc.com", "xm27377")
@@ -28,7 +28,7 @@ abstract class AbstractReserveSupper : ReserveSupper {
     abstract fun login(account: String, password: String): Boolean
 
     /**
-     * 判断是否节假日
+     * 判断是否工作日
      * [dateStr] yyyyMMdd
      */
     fun isWorkDay(dateStr: String): Boolean {
@@ -43,27 +43,27 @@ abstract class AbstractReserveSupper : ReserveSupper {
         var queryResult = resp.body()
             ?.string()
         if (queryResult == null) {
-            logger.error("请求节假日接口失败")
+            logger.error("请求工作日接口失败")
             return true
         }
-        logger.debug("api.goseek.cn 节假日请求结果:" + url + " " + queryResult)
+        logger.debug("api.goseek.cn 工作日请求结果:" + url + " " + queryResult)
         var result = queryResult.contains("\"data\":0")
 
         url = "http://tool.bitefu.net/jiari/?d=$dateStr"
         resp = OkHttpHelper.okHttpClient.newCall(Request.Builder().url(url).build())
             .execute()
         if (!resp.isSuccessful) {
-            logger.error("请求节假日接口失败")
+            logger.error("请求工作日接口失败")
             return true
         }
 
         queryResult = resp.body()
             ?.string()
         if (queryResult == null) {
-            logger.error("请求节假日接口失败")
+            logger.error("请求工作日接口失败")
             return true
         }
-        logger.debug("tool.bitefu.net 节假日请求结果:" + url + " " + queryResult)
-        return  result && queryResult.contains("0")
+        logger.debug("tool.bitefu.net 工作日请求结果:" + url + " " + queryResult)
+        return result && queryResult.contains("0")
     }
 }
