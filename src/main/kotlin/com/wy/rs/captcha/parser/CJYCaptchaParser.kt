@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.wy.rs.captcha.CaptchaParser
+import com.wy.rs.utils.JsonHelper
 import com.wy.rs.utils.OkHttpHelper.Companion.okHttpClient
 import okhttp3.FormBody
 import okhttp3.Request
@@ -46,8 +47,7 @@ class CJYCaptchaParser : CaptchaParser {
             throw RuntimeException("验证码接口返回非200, " + respContent)
         }
 
-        val mapper = ObjectMapper().registerKotlinModule()
-        val json: CaptchaResponse = mapper.readValue(respContent)
+        val json: CaptchaResponse = JsonHelper.mapper.readValue(respContent)
         if (json.err_no != 0) {
             throw RuntimeException("验证码接口返回错误, " + json.err_str)
         }

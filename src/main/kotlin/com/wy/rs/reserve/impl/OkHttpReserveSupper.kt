@@ -1,6 +1,8 @@
 package com.wy.rs.reserve.impl
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.wy.rs.captcha.CaptchaFactory
+import com.wy.rs.utils.JsonHelper
 import com.wy.rs.utils.OkHttpHelper.Companion.okHttpClient
 import okhttp3.*
 import org.slf4j.LoggerFactory
@@ -57,14 +59,15 @@ class OkHttpReserveSupper : AbstractReserveSupper() {
 
         val result = resp.body()
             ?.string()
-        if (result == null) {
+        if (result == null || !resp.isSuccessful) {
             throw RuntimeException("订餐失败 " + result)
         }
 
         logger.info(result)
+        val jsonResp: ReserveSupperResponse = JsonHelper.mapper.readValue(result)
 
-        if (!resp.isSuccessful || !result.contains("\"code\": \"100\"")) {
-            throw RuntimeException("订餐失败 " + result)
+        if (!"100".equals(jsonResp.code)) {
+            throw RuntimeException("订餐失败, 非100 " + result)
         }
     }
 
@@ -143,4 +146,6 @@ class OkHttpReserveSupper : AbstractReserveSupper() {
         resp.close()
         return true
     }
+
+    class ReserveSupperResponse(val code: String, val result: String, val message: String) {}
 }
