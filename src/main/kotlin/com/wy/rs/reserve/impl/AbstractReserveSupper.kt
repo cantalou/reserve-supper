@@ -19,6 +19,7 @@ abstract class AbstractReserveSupper : ReserveSupper {
             logger.error("今天非工作日不进行订餐操作")
             return;
         }
+        logger.error("今天正常工作日, 开始进行订餐操作")
         login("linzhiwei1@4399inc.com", "xm27377")
         reserveImpl()
     }
@@ -46,7 +47,7 @@ abstract class AbstractReserveSupper : ReserveSupper {
             logger.error("请求工作日接口失败")
             return true
         }
-        logger.debug("api.goseek.cn 工作日请求结果:" + url + " " + queryResult)
+        logger.debug("api.goseek.cn 工作日请求结果: $url  $queryResult")
         var result = queryResult.contains("\"data\":0")
 
         url = "http://tool.bitefu.net/jiari/?d=$dateStr"
@@ -63,7 +64,7 @@ abstract class AbstractReserveSupper : ReserveSupper {
             logger.error("请求工作日接口失败")
             return true
         }
-        logger.debug("tool.bitefu.net 工作日请求结果:" + url + " " + queryResult)
+        logger.debug("tool.bitefu.net 工作日请求结果:  $url  $queryResult");
         return result && queryResult.contains("0")
     }
 }
